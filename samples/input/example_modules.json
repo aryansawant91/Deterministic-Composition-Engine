@@ -1,0 +1,73 @@
+{
+  "modules": [
+    {
+      "id": "database",
+      "version": "1.4.0",
+      "dependencies": [],
+      "config_schema": {
+        "type": "object",
+        "properties": {
+          "host": { "type": "string" },
+          "port": { "type": "integer" }
+        },
+        "required": ["host", "port"]
+      },
+      "config": {
+        "host": "localhost",
+        "port": 5432
+      }
+    },
+    {
+      "id": "cache",
+      "version": "2.1.0",
+      "dependencies": [],
+      "config_schema": {
+        "type": "object",
+        "properties": {
+          "ttl": { "type": "integer" }
+        },
+        "required": ["ttl"]
+      },
+      "config": {
+        "ttl": 300
+      }
+    },
+    {
+      "id": "auth",
+      "version": "1.0.0",
+      "dependencies": [
+        { "module_id": "database", "version_constraint": "^1.0.0" }
+      ],
+      "config_schema": {
+        "type": "object",
+        "properties": {
+          "provider": { "type": "string" }
+        },
+        "required": ["provider"]
+      },
+      "config": {
+        "provider": "local"
+      }
+    },
+    {
+      "id": "app",
+      "version": "1.0.0",
+      "dependencies": [
+        { "module_id": "database", "version_constraint": "^1.0.0" },
+        { "module_id": "cache", "version_constraint": ">=2.0.0" },
+        { "module_id": "auth", "version_constraint": "^1.0.0" }
+      ],
+      "config_schema": {
+        "type": "object",
+        "properties": {
+          "port": { "type": "integer" }
+        },
+        "required": ["port"]
+      },
+      "config": {
+        "port": 8080
+      }
+    }
+  ],
+  "compose_request": ["app"]
+}

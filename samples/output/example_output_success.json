@@ -1,0 +1,25 @@
+{
+  "execution_order": ["cache", "database", "auth", "app"],
+  "modules": {
+    "cache": {
+      "version": "2.1.0",
+      "config": { "ttl": 300 },
+      "dependencies": []
+    },
+    "database": {
+      "version": "1.4.0",
+      "config": { "host": "localhost", "port": 5432 },
+      "dependencies": []
+    },
+    "auth": {
+      "version": "1.0.0",
+      "config": { "provider": "local" },
+      "dependencies": ["database"]
+    },
+    "app": {
+      "version": "1.0.0",
+      "config": { "port": 8080 },
+      "dependencies": ["auth", "cache", "database"]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "modules": [
+    {
+      "id": "a",
+      "version": "1.0.0",
+      "dependencies": [
+        { "module_id": "b", "version_constraint": "*" }
+      ],
+      "config_schema": {},
+      "config": {}
+    },
+    {
+      "id": "b",
+      "version": "1.0.0",
+      "dependencies": [
+        { "module_id": "a", "version_constraint": "*" }
+      ],
+      "config_schema": {},
+      "config": {}
+    }
+  ],
+  "compose_request": ["a"]
+}

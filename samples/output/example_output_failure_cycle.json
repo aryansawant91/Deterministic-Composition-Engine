@@ -1,0 +1,13 @@
+{
+  "ok": false,
+  "errors": [
+    {
+      "code": "CIRCULAR_DEPENDENCY",
+      "message": "Circular dependency detected: a -> b -> a",
+      "module_id": null,
+      "details": {
+        "cycle": ["a", "b", "a"]
+      }
+    }
+  ]
+}
